@@ -9,9 +9,9 @@
 - Who is the target audience?
   - Anyone can use the to-do app. I might focus more on the academic side, but generally anyone can use it.
 - What sort of data will it manage?
-  - It will manage the title of a task, course related or section, date it's due, and the progress. Adding a new table allows for either academic related, chores, grocery, cleaning, exercising might also work.
+  - It will manage the title of a task, course related or section, date it's due, and the progress. Adding a new table allows for either academic related, chores, grocery, cleaning, or exercising might also work.
 - Stretch Goals?
-  - I mentioned a calendar that will list the task on when it's due, I'm not sure how complex it might be but it's one of the functionality that helps me a lot so I want to recreate that, hopefully I'll be able to!
+  - I mentioned a calendar that will list the task on when it's due, I'm not sure how complex it might be but it's one of the functionality that helps me a lot so I want to recreate that, hopefully I'll be able to! I might not be able to make the website as exactly how I created my wireframe, especially the calendar but I will try my best!
 
 ## Project Wireframe
 
