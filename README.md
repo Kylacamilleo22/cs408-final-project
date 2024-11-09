@@ -15,8 +15,6 @@
 
 ## Project Wireframe
 
-TODO: Replace the wireframe below with you own design.
-
 ![homepage](img/homepage.png)
 ![board](img/board.png)
 ![calendar](img/calendar.png)
