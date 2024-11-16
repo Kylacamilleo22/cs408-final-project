@@ -1,0 +1,175 @@
+@font-face {
+    font-family: myFont;
+    src: url(/fonts/BeVietnamPro-ExtraLight.ttf);
+  }
+  
+  body {
+    font-family: myFont;
+    background: rgba(235,221,209,255);
+    margin: 0;
+  }
+  
+  h1{
+    color: white;
+    background: rgba(82, 51, 8, 0.564);
+    border: 2px solid #ffffff;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+  
+  .header { 
+    
+    background-image: url('/img/header_pic_2.png'); 
+    background-size:cover;
+    background-position: center;
+    
+    height: 300px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    width: auto;
+    
+  } 
+  
+  
+  nav {
+    text-align: center;
+    display: flex;  
+    align-items: center;
+    justify-content:center ; 
+    background: rgba(220,195,174,255);
+    background: rgba(220, 195, 174, 0.917);
+    padding-bottom: 10px;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 5px;
+    text-align: center;
+    justify-content: space-between;
+    
+  }
+  
+  nav li {
+    padding-left: 100px;
+    padding-right: 100px;
+    
+  }
+  
+  nav a {
+    display: inline-flex;
+  
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    text-align: center;
+    background: rgba(182,157,135,255);
+    background: rgba(182, 157, 135, 0.884);
+  
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 1px solid #ffffff;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    background: rgba(182, 157, 135, 0.637);
+  }
+  /* 
+  .main::after {
+    display: flex;
+  
+  } */
+  
+  .container-calendar {
+    color: #ffffff;
+    margin: 20px 20px 20px 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 15px;
+    background: rgba(182, 157, 135, 0.884);
+    border: 1px solid #ffffff;  
+  }
+
+  .month {
+    padding: 30px 25px;
+    background: rgba(82, 51, 8, 0.786);
+    text-align: center;
+  }
+  
+  .month ul {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  
+  .month .prev {
+    float: left;
+    padding-top: 10px;
+  }
+  
+  .month .next {
+    float: right;
+    padding-top: 10px;
+  }
+  
+  .weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #ddd;
+  }
+  
+  .weekdays li {
+    display: inline-block;
+    width: 13.6%;
+    color: #666;
+    text-align: center;
+  }
+  
+  .days {
+    padding: 10px 0;
+    background: #eee;
+    margin: 0;
+  }
+  
+  .days li {
+    list-style-type: none;
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size:12px;
+    color: #777;
+  }
+  
+  .days li .active {
+    padding: 5px;
+    background: rgba(82, 51, 8, 0.719);
+    color: white !important
+  }
+  
+  /* Add media queries for smaller screens */
+  @media screen and (max-width:720px) {
+    .weekdays li, .days li {width: 13.1%;}
+  }
+  
+  @media screen and (max-width: 420px) {
+    .weekdays li, .days li {width: 12.5%;}
+    .days li .active {padding: 2px;}
+  }
+  
+  @media screen and (max-width: 290px) {
+    .weekdays li, .days li {width: 12.2%;}
+  }
+  

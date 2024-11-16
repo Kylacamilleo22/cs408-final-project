@@ -1,4 +1,134 @@
+@font-face {
+  font-family: myFont;
+  src: url(/fonts/BeVietnamPro-ExtraLight.ttf);
+}
+
+body {
+  font-family: myFont;
+  background: rgba(235,221,209,255);
+  margin: 0;
+}
+
 h1{
-  border-color: #d3e644;
-  border-style: dashed;
+  color: white;
+  background: rgba(82, 51, 8, 0.564);
+  border: 2px solid #ffffff;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.header { 
+  
+  background-image: url('/img/header_pic_2.png'); 
+  background-size:cover;
+  background-position: center;
+  height: 300px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;  
+  text-align: center; 
+  width: auto;
+  
+} 
+
+
+nav {
+  text-align: center;
+  display: flex; 
+  align-items: center; 
+  justify-content:center ; 
+  background: rgba(220,195,174,255);
+  background: rgba(220, 195, 174, 0.917);
+  padding-bottom: 10px;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin-bottom: 5px;
+  text-align: center;
+  justify-content: space-between;
+  
+}
+
+nav li {
+  padding-left: 100px;
+  padding-right: 100px;
+  
+}
+
+nav a {
+  display: inline-flex;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  text-align: center;
+  background: rgba(182,157,135,255);
+  background: rgba(182, 157, 135, 0.884);
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid #ffffff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background: rgba(182, 157, 135, 0.637);
+}
+/* 
+.main::after {
+  display: flex;
+
+} */
+
+.main {
+  display: flex;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 980px;
+  flex-wrap: wrap;
+}
+
+.about {
+  width: 50%;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 20px 50px 20px 50px;
+  background: rgba(182, 157, 135, 0.884);
+  border: 1px solid #ffffff;  
+  
+}
+
+.about-info {
+  text-align: justify;
+}
+
+
+.get-started-button {
+  flex: 1;
+  height: 50px;
+  min-width: 0;
+  text-align: center;
+  align-items: center;
+  overflow: auto;
+  margin: 200px 10px 10px 10px;
+  padding: 25px 10px 1px 10px;
+  /* display: inline-block; */
+  /* float: none; */
+  color: white;
+  font-size: 20px;
+  background: rgba(82, 51, 8, 0.564);
+  border: 2px solid #ffffff;
+  text-decoration: none;
+}
+
+.get-started-button:hover {
+  background: rgb(182, 157, 135);
+
 }

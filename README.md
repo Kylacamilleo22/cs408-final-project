@@ -18,3 +18,9 @@
 ![homepage](img/homepage.png)
 ![board](img/board.png)
 ![calendar](img/calendar.png)
+
+## Sources
+- https://www.geeksforgeeks.org/set-the-opacity-only-to-background-color-not-on-the-text-in-css/
+- https://stackoverflow.com/questions/2626039/css-rgba-border-background-alpha-double
+- https://stackoverflow.com/questions/12381721/background-image-border
+- https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_calendar
