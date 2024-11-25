@@ -27,31 +27,116 @@
   <div class="main">
     <div class="about">
       <button class="add-table-button" type="button">+</button>
+      
       <h2>Week 1</h2>
-       <div class="table">
-    <table summary="A Table that list the id, name, price, and action">
-        <thead>
-            <tr class="firstRow">
-                <th scope="col">Course</th>
-                <th scope="col">Task</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Progress</th>
-            </tr>
-        </thead>
-        <tbody id="bodyTable">
-
-        </tbody>
-    </table>        
+      <div class="table">
+      <table id="myTable" summary="A Table that list the course, task, due date, and progress">
+          <thead>
+              <tr class="firstRow">
+                  <th scope="col">Course</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Due Date</th>
+                  <th scope="col">Progress</th>
+                  <th scope="col">Action</th>
+              </tr>
+          </thead>
+          <tbody id="bodyTable">
+          </tbody>
+      </table>    
+        
     </div>
+    <button class="add-table-button" type="button" onclick="addRow()">+</button>
+
     </div>
 
-
-
+    <!-- <h1>Enter Text Below</h1>
+    <div>
+      <span class="label" id="placeholderLabel">Type something here...</span>
+      <input type="text" id="userInput" placeholder="Type something here..." />
+    </div> -->
   </div>
 
   </div>
 
-  <script type="module" src="/js/main.js"></script>
+  <!-- <script>
+    function addRow() {
+    let rows = document.getElementById("myTable");
+
+    var r = rows.insertRow();
+    var c = r.insertCell(0); 
+    var t = r.insertCell(1); 
+    var d = r.insertCell(2); 
+    var p = r.insertCell(3); 
+    var a = r.insertCell(4); 
+
+    // Course selection
+    let select_course = document.createElement("select");
+    
+    var option1 = document.createElement("option"); 
+    option1.value = "value1"; 
+    option1.text = "Option 1"; 
+    select_course.appendChild(option1); 
+
+    var option2 = document.createElement("option"); 
+    option2.value = "value2"; 
+    option2.text = "Option 2"; 
+    select_course.appendChild(option2); 
+
+
+    var option1 = document.createElement("option"); 
+    option1.value = "value1"; 
+    option1.text = "Option 1"; 
+    select_course.appendChild(option1); 
+    
+    c.appendChild(select_course);
+
+    // Task input
+    let task = document.createElement("input");
+    task.setAttribute("type", "text");
+    task.setAttribute("id", "task");
+    t.appendChild(task);
+
+
+    // d.innerText = "hello";
+    let calendar = document.createElement("input");
+    calendar.setAttribute("type", "date");
+    task.setAttribute("id", "calendar");
+    d.appendChild(calendar);
+    
+    // Progress    
+    let select_prog = document.createElement("select");
+    
+    var notstarted = document.createElement("option"); 
+    notstarted.value = "notstarted"; 
+    notstarted.text = "Not Started"; 
+    select_prog.appendChild(notstarted); 
+
+    var inprog = document.createElement("option"); 
+    inprog.value = "inprog"; 
+    inprog.text = "In Progress"; 
+    select_prog.appendChild(inprog); 
+
+    var complete = document.createElement("option"); 
+    complete.value = "complete"; 
+    complete.text = "Complete"; 
+    select_prog.appendChild(complete); 
+    
+    p.appendChild(select_prog);
+
+    // Action
+    let delButton = document.createElement("button");
+    delButton.textContent = "Delete";
+    delButton.onclick = function () { deleteData(item.id);};
+    a.appendChild(delButton);
+    }
+
+    document.getElementById('addLinks').onkeypress=function(e){
+    if(e.keyCode==13){
+        document.getElementById('linkadd').click();
+    }
+}
+  </script> -->
 </body>
+<script src="/js/main.js"></script>
 
 </html>

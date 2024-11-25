@@ -24,3 +24,5 @@
 - https://stackoverflow.com/questions/2626039/css-rgba-border-background-alpha-double
 - https://stackoverflow.com/questions/12381721/background-image-border
 - https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_calendar
+- https://www.quora.com/What-is-the-code-to-create-a-select-box-in-JavaScript
+  
