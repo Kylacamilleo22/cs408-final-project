@@ -30,30 +30,7 @@ function addRow() {
      * If decided to use drop down option for course select
      */
     // let select_course = document.createElement("select");
-    
-    // var option1 = document.createElement("option"); 
-    // option1.value = "value1"; 
-    // option1.text = "Option 1"; 
-    // select_course.appendChild(option1); 
 
-    // var option2 = document.createElement("option"); 
-    // option2.value = "value2"; 
-    // option2.text = "Option 2"; 
-    // select_course.appendChild(option2); 
-
-
-    // var option1 = document.createElement("option"); 
-    // option1.value = "value1"; 
-    // option1.text = "Option 1"; 
-    // select_course.appendChild(option1); 
-    
-    // c.appendChild(select_course);
-
-    // Task input
-    // let task = document.createElement("p");
-    // task.textContent = taskNum + 1;
-    // task.setAttribute("id", "taskID");
-    // t.appendChild(task);
     let task = document.createElement("input");
     task.setAttribute("type", "text");
     task.setAttribute("id", "taskID");
@@ -104,7 +81,8 @@ function addRow() {
     save.textContent = "Save";
     // save.onclick = function () { sendData();};
     save.setAttribute("id", "saveButton");
-    save.onclick = function () { sendData();     setTimeout(() => {
+    save.onclick = function () { sendData();     
+        setTimeout(() => {
         window.location.reload();
       }, 500);};
     a.appendChild(save);
@@ -164,23 +142,84 @@ function sendData() {
             }));
 }
 
-const inputField = document.getElementById('userInput');
-    const label = document.getElementById('placeholderLabel');
-
-    inputField.addEventListener('input', function () {
-      if (inputField.value.trim() !== '') {
-        label.style.display = 'inline'; // Show the label
-        inputField.placeholder = ''; // Clear the placeholder
-      } else {
-        label.style.display = 'none'; // Hide the label
-        inputField.placeholder = 'Type something here...'; // Restore the placeholder
-      }
-    });
-
-
 //Loads the data using GET
 function loadData(){
     let lambda = document.getElementById("bodyTable");
+    let xhr = new XMLHttpRequest();
+    // xhr.onload = function () {
+    //     if (xhr.status >= 200 && xhr.status < 300) {
+    //         console.log("Raw response:", xhr.response); // Log raw response
+    //         try {
+    //             const items = JSON.parse(xhr.response);
+    //             console.log("Parsed items:", items); // Log parsed response
+    //         } catch (err) {
+    //             console.error("Error parsing JSON:", err);
+    //         }
+    //     } else {
+    //         console.error(`Request failed with status ${xhr.status}`);
+    //     }
+    // };
+    xhr.addEventListener("load", function () {
+        // lambda.innerHTML = xhr.response;
+        lambda.innerHTML = ""; // no duplicates
+        const items = JSON.parse(xhr.response); // parse the item
+        
+        for (const item of items) {
+            console.log("Item:", item);
+
+        // iterate through all items
+        // items.forEach(item => {
+            //cell.appendChild(cellText);
+            //row.appendChild(cell);
+            var row = lambda.insertRow();
+            var id = row.insertCell(0);
+            var course = row.insertCell(1);
+            var desc = row.insertCell(2);
+            var duedate = row.insertCell(3); 
+            var progress = row.insertCell(4); 
+            var action = row.insertCell(5); 
+
+            id.innerText = item.id;
+            course.innerText = item.course;
+            desc.innerText = item.description;
+            duedate.innerText = item.duedate;
+            progress.innerText = item.progress;
+            
+            // let save = document.createElement("button");
+            // save.textContent = "Save";
+            // // save.onclick = function () { sendData();};
+            // save.setAttribute("id", "saveButton");
+            // save.onclick = function () { sendData();};
+            // action.appendChild(save);
+            // // need delete button
+            let delButton = document.createElement("button");
+            delButton.textContent = "Delete";
+            delButton.onclick = function () {
+                deleteData(item.id);     
+                setTimeout(() => {
+                window.location.reload();
+              }, 500);};
+            action.appendChild(delButton);
+        }
+    });
+
+    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items", true);
+    xhr.send();
+    
+}
+
+function deleteData(id) {
+    let xhr = new XMLHttpRequest();
+    // lambdaUrl + itemNumber
+    // const lambdaUrl = "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items" + id;
+    xhr.open("DELETE", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items/" + id, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    loadData();
+    // checkDelete(); // Display message that it has been deleted -- not working
+}
+
+function addCourse () {
     let xhr = new XMLHttpRequest();
     xhr.addEventListener("load", function () {
         // lambda.innerHTML = xhr.response;
@@ -224,15 +263,5 @@ function loadData(){
     xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items");
     xhr.send();
     
-}
 
-function deleteData(id) {
-    let xhr = new XMLHttpRequest();
-    // lambdaUrl + itemNumber
-    // const lambdaUrl = "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items" + id;
-    xhr.open("DELETE", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items/" + id);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send();
-    loadData();
-    // checkDelete(); // Display message that it has been deleted -- not working
 }

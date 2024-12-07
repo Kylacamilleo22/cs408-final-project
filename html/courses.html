@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Board</title>
-  <meta name="description" content="">
+  <title>Courses</title>
+  <meta name="courses" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/board.css">
 </head>
@@ -12,32 +12,53 @@
 <body>
   <header class="header">
   <!-- <img src="/img/header_pic_2.png" class="thumbnail"> -->
-    <h1>Board</h1>
+    <h1>Curriculum</h1>
   </header>
 
   <nav>
     <ul>
       <li><a href="/html/index.html">Home</a></li>
       <li><a href="/html/board.html">Board</a></li>
-      <li><a href="/html/calendar.html">Calendar</a></li>
+      <li><a href="/html/courses.html">Curriculum</a></li>
 
     </ul>
   </nav>
 
   <div class="main">
     <div class="about">
-      <button class="add-table-button" type="button">+</button>
+      <!-- <button class="add-table-button" id="load-data" type="button" onclick="loadData()">Load Data</button> -->
+      <!-- <button class="add-table-button" type="button">Add Table</button> -->
       
-      <h2>Week 1</h2>
-      <div class="table">
+      <h2>Courses</h2>
+      <button class="add-table-button" type="button">Load Courses</button>
+
+      <div>
+
+        <form action="" class="create-class-form">
+
+          <label for="className">Class Name:</label>
+          <input type="text" id="className" name="className">
+          <button id="createClassButton">Create Class</button>
+          <br><br>
+          
+          
+          <label for="classListSelect">Select a Class To Add a Student:</label>
+          <select name="classListSelect" id="classListSelect">
+      </div>
+
+      <div>
+        
+      </div>
+      <!-- <div class="table">
       <table id="myTable" summary="A Table that list the course, task, due date, and progress">
           <thead>
               <tr class="firstRow">
-                  <th scope="col">Course</th>
-                  <th scope="col">Task</th>
-                  <th scope="col">Due Date</th>
-                  <th scope="col">Progress</th>
-                  <th scope="col">Action</th>
+                <th scope="col">Task</th>
+                <th scope="col">Course</th>
+                <th scope="col">Description</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Progress</th>
+                <th scope="col">Action</th>
               </tr>
           </thead>
           <tbody id="bodyTable">
@@ -45,17 +66,17 @@
       </table>    
         
     </div>
-    <button class="add-table-button" type="button" onclick="sendData()">+</button>
+    <button class="add-table-button" type="button" onclick="addRow()">+</button> -->
 
     </div>
-
+<!-- 
     <h1>Enter Text Below</h1>
     <div>
       <input type="text" id="userInput" placeholder="Type something here..." />
       <button id="submitButton">Submit</button>
     </div>
     <p id="placeholderText"></p>
-  </div>
+  </div> -->
 
   </div>
 
