@@ -1,4 +1,4 @@
-// window.onload = loaded;
+window.onload = loadData();
 
 /**
  * Simple Function that will be run when the browser is finished loading.
@@ -9,7 +9,7 @@
 //     console.log(hello);
 // }
 
-let taskNum = 1;
+let taskNum = 0;
 
 function addRow() {
 
@@ -50,8 +50,12 @@ function addRow() {
     // c.appendChild(select_course);
 
     // Task input
-    let task = document.createElement("p");
-    task.textContent = taskNum;
+    // let task = document.createElement("p");
+    // task.textContent = taskNum + 1;
+    // task.setAttribute("id", "taskID");
+    // t.appendChild(task);
+    let task = document.createElement("input");
+    task.setAttribute("type", "text");
     task.setAttribute("id", "taskID");
     t.appendChild(task);
 
@@ -100,14 +104,10 @@ function addRow() {
     save.textContent = "Save";
     // save.onclick = function () { sendData();};
     save.setAttribute("id", "saveButton");
-    save.onclick = function () { sendData();};
+    save.onclick = function () { sendData();     setTimeout(() => {
+        window.location.reload();
+      }, 500);};
     a.appendChild(save);
-
-    let delButton = document.createElement("button");
-    delButton.textContent = "Delete";
-    delButton.onclick = function () { deleteData(item.id);};
-    delButton.setAttribute("id", "delButton");
-    a.appendChild(delButton);
 
     // Append the cells to the row
     newRow.appendChild(t);
@@ -155,7 +155,8 @@ function sendData() {
         }
     };
     xhr.send(JSON.stringify({
-                "id": String(taskNum),
+                // "id": String(taskNum),
+                "id": id.value,
                 "course": course.value,
                 "description": description.value,
                 "duedate": duedate.value,
@@ -175,3 +176,63 @@ const inputField = document.getElementById('userInput');
         inputField.placeholder = 'Type something here...'; // Restore the placeholder
       }
     });
+
+
+//Loads the data using GET
+function loadData(){
+    let lambda = document.getElementById("bodyTable");
+    let xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", function () {
+        // lambda.innerHTML = xhr.response;
+        lambda.innerHTML = ""; // no duplicates
+        const items = JSON.parse(xhr.response); // parse the item
+        
+        // iterate through all items
+        items.forEach(item => {
+            //cell.appendChild(cellText);
+            //row.appendChild(cell);
+            var row = lambda.insertRow();
+            var id = row.insertCell(0);
+            var course = row.insertCell(1);
+            var desc = row.insertCell(2);
+            var duedate = row.insertCell(3); 
+            var progress = row.insertCell(4); 
+            var action = row.insertCell(5); 
+
+            id.innerText = item.id;
+            course.innerText = item.course;
+            desc.innerText = item.description;
+            duedate.innerText = item.duedate;
+            progress.innerText = item.progress;
+            
+            // let save = document.createElement("button");
+            // save.textContent = "Save";
+            // // save.onclick = function () { sendData();};
+            // save.setAttribute("id", "saveButton");
+            // save.onclick = function () { sendData();};
+            // action.appendChild(save);
+            // // need delete button
+            let delButton = document.createElement("button");
+            delButton.textContent = "Delete";
+            delButton.onclick = function () {deleteData(item.id);     setTimeout(() => {
+                window.location.reload();
+              }, 500);};
+            action.appendChild(delButton);
+        });
+    });
+
+    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items");
+    xhr.send();
+    
+}
+
+function deleteData(id) {
+    let xhr = new XMLHttpRequest();
+    // lambdaUrl + itemNumber
+    // const lambdaUrl = "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items" + id;
+    xhr.open("DELETE", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items/" + id);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    loadData();
+    // checkDelete(); // Display message that it has been deleted -- not working
+}
