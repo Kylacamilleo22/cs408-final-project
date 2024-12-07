@@ -32,14 +32,16 @@ function addRow() {
     // let select_course = document.createElement("select");
 
     let task = document.createElement("input");
-    task.setAttribute("type", "text");
+    task.setAttribute("type", "number");
     task.setAttribute("id", "taskID");
+    task.setAttribute("placeholder", "1");
     t.appendChild(task);
 
     // Course selection
     let course = document.createElement("input");
     course.setAttribute("type", "text");
     course.setAttribute("id", "course");
+    course.setAttribute("placeholder", "e.g. CS 408");
     c.appendChild(course);
 
     // Due Date
@@ -73,7 +75,7 @@ function addRow() {
     let description = document.createElement("input");
     description.setAttribute("type", "text");
     description.setAttribute("id", "desc");
-    description.setAttribute("placeholder", "Quiz 1");
+    description.setAttribute("placeholder", "e.g. HW 1");
     desc.appendChild(description);
 
     // Action
