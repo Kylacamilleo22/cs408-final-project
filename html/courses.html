@@ -26,20 +26,18 @@
 
   <div class="main">
     <div class="about">
-      <button class="add-table-button" type="button">Load Tables</button>
-      <button class="add-table-button" type="button">Add Table</button>
+      <button class="add-table-button" type="button">+</button>
       
       <h2>Week 1</h2>
       <div class="table">
       <table id="myTable" summary="A Table that list the course, task, due date, and progress">
           <thead>
               <tr class="firstRow">
-                <th scope="col">Task</th>
-                <th scope="col">Course</th>
-                <th scope="col">Description</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Progress</th>
-                <th scope="col">Action</th>
+                  <th scope="col">Course</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Due Date</th>
+                  <th scope="col">Progress</th>
+                  <th scope="col">Action</th>
               </tr>
           </thead>
           <tbody id="bodyTable">
@@ -47,7 +45,7 @@
       </table>    
         
     </div>
-    <button class="add-table-button" type="button" onclick="addRow()">+</button>
+    <button class="add-table-button" type="button" onclick="sendData()">+</button>
 
     </div>
 

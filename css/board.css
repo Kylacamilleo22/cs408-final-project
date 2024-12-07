@@ -115,21 +115,26 @@ nav a {
 table {
   border-collapse: collapse;
   width: 100%;
+  
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
+
 }
 
 .table {
   padding: 2px;
   background-color: white;
+  color: black;
+
 }
 
 .firstRow th{
   background: rgba(82, 51, 8, 0.845);
+  color: white;
 }
 
 tr:nth-child(odd) {

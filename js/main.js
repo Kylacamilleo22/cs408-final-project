@@ -9,21 +9,22 @@
 //     console.log(hello);
 // }
 
+let taskNum = 1;
+
 function addRow() {
-    let rows = document.getElementById("myTable");
 
-    var r = rows.insertRow();
-    var c = r.insertCell(0); 
-    var t = r.insertCell(1); 
-    var d = r.insertCell(2); 
-    var p = r.insertCell(3); 
-    var a = r.insertCell(4); 
+// Append the row to the table body
+    // let rows = document.getElementById("myTable");
+    let newRow = document.createElement("tr");
 
-    // Course selection
-    let course = document.createElement("input");
-    course.setAttribute("type", "text");
-    course.setAttribute("id", "course");
-    c.appendChild(course);
+    // var r = rows.insertRow();
+    let t = document.createElement("td"); // For task input
+    let c = document.createElement("td"); // For task input
+    let desc = document.createElement("td"); // For task input
+    let d = document.createElement("td"); // For due date
+    let p = document.createElement("td"); // For progress dropdown
+    let a = document.createElement("td"); // For actions
+
 
     /**
      * If decided to use drop down option for course select
@@ -49,11 +50,16 @@ function addRow() {
     // c.appendChild(select_course);
 
     // Task input
-    let task = document.createElement("input");
-    task.setAttribute("type", "text");
-    task.setAttribute("id", "task");
+    let task = document.createElement("p");
+    task.textContent = taskNum;
+    task.setAttribute("id", "taskID");
     t.appendChild(task);
 
+    // Course selection
+    let course = document.createElement("input");
+    course.setAttribute("type", "text");
+    course.setAttribute("id", "course");
+    c.appendChild(course);
 
     // Due Date
     let duedate = document.createElement("input");
@@ -82,14 +88,40 @@ function addRow() {
     select_prog.setAttribute("id", "selectProg");
     p.appendChild(select_prog);
 
+    // Description
+    let description = document.createElement("input");
+    description.setAttribute("type", "text");
+    description.setAttribute("id", "desc");
+    description.setAttribute("placeholder", "Quiz 1");
+    desc.appendChild(description);
+
     // Action
+    let save = document.createElement("button");
+    save.textContent = "Save";
+    // save.onclick = function () { sendData();};
+    save.setAttribute("id", "saveButton");
+    save.onclick = function () { sendData();};
+    a.appendChild(save);
+
     let delButton = document.createElement("button");
     delButton.textContent = "Delete";
     delButton.onclick = function () { deleteData(item.id);};
     delButton.setAttribute("id", "delButton");
     a.appendChild(delButton);
-}
 
+    // Append the cells to the row
+    newRow.appendChild(t);
+    newRow.appendChild(c);
+    newRow.appendChild(desc);
+    newRow.appendChild(d);
+    newRow.appendChild(p);
+    newRow.appendChild(a);
+
+    document.getElementById("bodyTable").appendChild(newRow);
+    taskNum++;
+    console.log("addingrow: " + task.value);
+    
+}
 
 // Send/Add data using PUT
 function sendData() {
@@ -97,22 +129,38 @@ function sendData() {
     xhr.open("PUT", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items");
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    var course = document.getElementById("id");
-    var task = document.getElementById("name");
-    var duedate = document.getElementById("price");
-    var progress = document.getElementById("checkItemAdded");
+    var id = document.getElementById("taskID");
+    var course = document.getElementById("course");
+    var description = document.getElementById("desc");
+    var duedate = document.getElementById("duedate");
+    var progress = document.getElementById("selectProg");
+    // console.log("Course Element:", course.value);
+    // console.log("Task Element:", task);
+    // console.log("Due Date Element:", duedate);
+    // console.log("Progress Element:", progress);
 
-    if (course.value != "" || task.value != "" || duedate.value != "" || progress.value != "") {
+    console.log("Task Value:", id ? id.value : null);    
+    console.log("Course Value:", course ? course.value : null);
+    console.log("Description Value:", description ? description.value : null);
+    console.log("Due Date Value:", duedate ? duedate.value : null);
+    console.log("Progress Value:", progress ? progress.value : null);
+    
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { // Request completed
+            if (xhr.status === 200) {
+                alert("Data successfully saved!");
+            } else {
+                alert("Error saving data: " + xhr.statusText);
+            }
+        }
+    };
     xhr.send(JSON.stringify({
+                "id": String(taskNum),
                 "course": course.value,
-                "task": task.value,
+                "description": description.value,
                 "duedate": duedate.value,
-                "progress": progress.value
+                "progress": progress.value,
             }));
-            // check.textContent = "Added Item. Load the table to check";
-    } else {
-        // check.textContent = "Cannot add empty values";
-    }
 }
 
 const inputField = document.getElementById('userInput');
