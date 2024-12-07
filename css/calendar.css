@@ -20,72 +20,65 @@
   }
   
   .header { 
-    
     background-image: url('/img/header_pic_2.png'); 
     background-size:cover;
     background-position: center;
-    
     height: 300px; 
     display: flex; 
     align-items: center; 
-    justify-content: center; 
+    justify-content: center;  
     text-align: center; 
     width: auto;
-    
   } 
   
   
-  nav {
-    text-align: center;
-    display: flex;  
-    align-items: center;
-    justify-content:center ; 
-    background: rgba(220,195,174,255);
-    background: rgba(220, 195, 174, 0.917);
-    padding-bottom: 10px;
-  }
+
+nav {
+  text-align: center;
+  display: flex; 
+  align-items: center; 
+  overflow:auto;
+  justify-content:center ;  
+  background: rgba(220,195,174,255);
+  background: rgba(220, 195, 174, 0.917);
+  padding-bottom: 10px;
+
+}
+
+nav ul {
+  display:inline-flex;
+  list-style-type: none;
+  margin-bottom: 5px;
+  text-align: center;
   
-  nav ul {
-    display: flex;
-    list-style-type: none;
-    margin-bottom: 5px;
-    text-align: center;
-    justify-content: space-between;
-    
-  }
+}
+
+nav li {
+  margin: 0px 30px;
+
   
-  nav li {
-    padding-left: 100px;
-    padding-right: 100px;
-    
-  }
-  
-  nav a {
-    display: inline-flex;
-  
-    color: rgb(255, 255, 255);
-    font-size: 15px;
-    text-align: center;
-    background: rgba(182,157,135,255);
-    background: rgba(182, 157, 135, 0.884);
-  
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    border: 1px solid #ffffff;
-    text-decoration: none;
-  }
-  
+}
+
+nav a {
+  display: inline-flex;
+
+  color: rgb(255, 255, 255);
+  font-size: 15px;
+  text-align: center;
+  background: rgba(182,157,135,255);
+  background: rgba(182, 157, 135, 0.884);
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 1px solid #ffffff;
+  text-decoration: none;
+}
+
   nav a:hover {
     background: rgba(182, 157, 135, 0.637);
   }
-  /* 
-  .main::after {
-    display: flex;
-  
-  } */
-  
   .container-calendar {
     color: #ffffff;
     margin: 20px 20px 20px 20px;

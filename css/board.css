@@ -21,16 +21,14 @@
   }
   
   .header { 
-    
     background-image: url('/img/header_pic_2.png'); 
-    background-size:cover; 
-    background-position: center; 
-    
+    background-size:cover;
+    background-position: center;
     height: 300px; 
     display: flex; 
     align-items: center; 
-    justify-content: center; 
-    text-align: center;
+    justify-content: center;  
+    text-align: center; 
     width: auto;
   } 
   
@@ -38,28 +36,27 @@
 
 nav {
   text-align: center;
-  display: flex;
+  display: flex; 
   align-items: center; 
+  overflow:auto;
   justify-content:center ;  
   background: rgba(220,195,174,255);
   background: rgba(220, 195, 174, 0.917);
   padding-bottom: 10px;
-  overflow:auto;
 
 }
 
 nav ul {
-  display: flex;
+  display:inline-flex;
   list-style-type: none;
   margin-bottom: 5px;
   text-align: center;
-  justify-content: space-between;
   
 }
 
 nav li {
-  padding-left: 100px;
-  padding-right: 100px;
+  margin: 0px 30px;
+
   
 }
 
