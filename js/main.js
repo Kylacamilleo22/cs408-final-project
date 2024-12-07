@@ -148,31 +148,16 @@ function sendData() {
 function loadData(){
     let lambda = document.getElementById("bodyTable");
     let xhr = new XMLHttpRequest();
-    // xhr.onload = function () {
-    //     if (xhr.status >= 200 && xhr.status < 300) {
-    //         console.log("Raw response:", xhr.response); // Log raw response
-    //         try {
-    //             const items = JSON.parse(xhr.response);
-    //             console.log("Parsed items:", items); // Log parsed response
-    //         } catch (err) {
-    //             console.error("Error parsing JSON:", err);
-    //         }
-    //     } else {
-    //         console.error(`Request failed with status ${xhr.status}`);
-    //     }
-    // };
+
     xhr.addEventListener("load", function () {
         // lambda.innerHTML = xhr.response;
         lambda.innerHTML = ""; // no duplicates
         const items = JSON.parse(xhr.response); // parse the item
         
         for (const item of items) {
+            
             console.log("Item:", item);
 
-        // iterate through all items
-        // items.forEach(item => {
-            //cell.appendChild(cellText);
-            //row.appendChild(cell);
             var row = lambda.insertRow();
             var id = row.insertCell(0);
             var course = row.insertCell(1);
@@ -186,14 +171,7 @@ function loadData(){
             desc.innerText = item.description;
             duedate.innerText = item.duedate;
             progress.innerText = item.progress;
-            
-            // let save = document.createElement("button");
-            // save.textContent = "Save";
-            // // save.onclick = function () { sendData();};
-            // save.setAttribute("id", "saveButton");
-            // save.onclick = function () { sendData();};
-            // action.appendChild(save);
-            // // need delete button
+
             let delButton = document.createElement("button");
             delButton.textContent = "Delete";
             delButton.onclick = function () {
@@ -218,52 +196,4 @@ function deleteData(id) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     loadData();
-    // checkDelete(); // Display message that it has been deleted -- not working
-}
-
-function addCourse () {
-    let xhr = new XMLHttpRequest();
-    xhr.addEventListener("load", function () {
-        // lambda.innerHTML = xhr.response;
-        lambda.innerHTML = ""; // no duplicates
-        const items = JSON.parse(xhr.response); // parse the item
-        
-        // iterate through all items
-        items.forEach(item => {
-            //cell.appendChild(cellText);
-            //row.appendChild(cell);
-            var row = lambda.insertRow();
-            var id = row.insertCell(0);
-            var course = row.insertCell(1);
-            var desc = row.insertCell(2);
-            var duedate = row.insertCell(3); 
-            var progress = row.insertCell(4); 
-            var action = row.insertCell(5); 
-
-            id.innerText = item.id;
-            course.innerText = item.course;
-            desc.innerText = item.description;
-            duedate.innerText = item.duedate;
-            progress.innerText = item.progress;
-            
-            // let save = document.createElement("button");
-            // save.textContent = "Save";
-            // // save.onclick = function () { sendData();};
-            // save.setAttribute("id", "saveButton");
-            // save.onclick = function () { sendData();};
-            // action.appendChild(save);
-            // // need delete button
-            let delButton = document.createElement("button");
-            delButton.textContent = "Delete";
-            delButton.onclick = function () {deleteData(item.id);     setTimeout(() => {
-                window.location.reload();
-              }, 500);};
-            action.appendChild(delButton);
-        });
-    });
-
-    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items");
-    xhr.send();
-    
-
 }

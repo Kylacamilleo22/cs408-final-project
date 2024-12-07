@@ -45,113 +45,11 @@
           <tbody id="bodyTable">
           </tbody>
       </table>    
-        
     </div>
     <button class="add-table-button" type="button" onclick="addRow()">+</button>
-
     </div>
-<!-- 
-    <h1>Enter Text Below</h1>
-    <div>
-      <input type="text" id="userInput" placeholder="Type something here..." />
-      <button id="submitButton">Submit</button>
-    </div>
-    <p id="placeholderText"></p>
-  </div> -->
-
   </div>
 
-  <!-- <script>
-    function addRow() {
-    let rows = document.getElementById("myTable");
-
-    var r = rows.insertRow();
-    var c = r.insertCell(0); 
-    var t = r.insertCell(1); 
-    var d = r.insertCell(2); 
-    var p = r.insertCell(3); 
-    var a = r.insertCell(4); 
-
-    // Course selection
-    let select_course = document.createElement("select");
-    
-    var option1 = document.createElement("option"); 
-    option1.value = "value1"; 
-    option1.text = "Option 1"; 
-    select_course.appendChild(option1); 
-
-    var option2 = document.createElement("option"); 
-    option2.value = "value2"; 
-    option2.text = "Option 2"; 
-    select_course.appendChild(option2); 
-
-
-    var option1 = document.createElement("option"); 
-    option1.value = "value1"; 
-    option1.text = "Option 1"; 
-    select_course.appendChild(option1); 
-    
-    c.appendChild(select_course);
-
-    // Task input
-    let task = document.createElement("input");
-    task.setAttribute("type", "text");
-    task.setAttribute("id", "task");
-    t.appendChild(task);
-
-
-    // d.innerText = "hello";
-    let calendar = document.createElement("input");
-    calendar.setAttribute("type", "date");
-    task.setAttribute("id", "calendar");
-    d.appendChild(calendar);
-    
-    // Progress    
-    let select_prog = document.createElement("select");
-    
-    var notstarted = document.createElement("option"); 
-    notstarted.value = "notstarted"; 
-    notstarted.text = "Not Started"; 
-    select_prog.appendChild(notstarted); 
-
-    var inprog = document.createElement("option"); 
-    inprog.value = "inprog"; 
-    inprog.text = "In Progress"; 
-    select_prog.appendChild(inprog); 
-
-    var complete = document.createElement("option"); 
-    complete.value = "complete"; 
-    complete.text = "Complete"; 
-    select_prog.appendChild(complete); 
-    
-    p.appendChild(select_prog);
-
-    // Action
-    let delButton = document.createElement("button");
-    delButton.textContent = "Delete";
-    delButton.onclick = function () { deleteData(item.id);};
-    a.appendChild(delButton);
-    }
-
-    document.getElementById('addLinks').onkeypress=function(e){
-    if(e.keyCode==13){
-        document.getElementById('linkadd').click();
-    }
-}
-  </script> -->
 </body>
 <script src="/js/main.js"></script>
-  <script>
-    document.getElementById('submitButton').addEventListener('click', function () {
-      const input = document.getElementById('userInput');
-
-      // If the input field is not empty
-      if (input.value.trim() !== '') {
-        const userInput = input.value; // Store the user's input
-        input.placeholder = ''; // Clear the placeholder
-        input.value = userInput; // Keep the user's input as permanent text
-        input.setAttribute('readonly', true); // Make the input field read-only
-      }
-    });
-  </script>
 </html>
