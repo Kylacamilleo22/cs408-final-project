@@ -155,9 +155,8 @@ function loadData(){
         const items = JSON.parse(xhr.response); // parse the item
         
         for (const item of items) {
-            
-            console.log("Item:", item);
 
+            console.log("Item:", item);
             var row = lambda.insertRow();
             var id = row.insertCell(0);
             var course = row.insertCell(1);
@@ -172,6 +171,12 @@ function loadData(){
             duedate.innerText = item.duedate;
             progress.innerText = item.progress;
 
+            let editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.onclick = function () {
+                editRow(item.id);
+            }
+            action.appendChild(editButton);
             let delButton = document.createElement("button");
             delButton.textContent = "Delete";
             delButton.onclick = function () {
@@ -179,6 +184,7 @@ function loadData(){
                 setTimeout(() => {
                 window.location.reload();
               }, 500);};
+            
             action.appendChild(delButton);
         }
     });
@@ -196,4 +202,167 @@ function deleteData(id) {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     loadData();
+}
+
+function editRow(id) {
+    insertSelectedRow(id);
+    modalOverlay.style.display = "block"; // Show the modal
+
+}
+
+// Get references to the modal elements
+const modalOverlay = document.getElementById("modalOverlay");
+const closeModal = document.getElementById("closeModal");
+
+// Close the modal when the "Close" button is clicked
+closeModal.addEventListener("click", () => {
+    modalOverlay.style.display = "none"; // Hide the modal
+});
+
+// Closing modal when clicking outside of content
+modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) {
+    modalOverlay.style.display = "none"; // Hide the modal
+    }
+});
+
+
+function insertSelectedRow(id) {
+    let lambda = document.getElementById("bodyTableEdit");
+    let xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", function () {
+        // lambda.innerHTML = xhr.response;
+        lambda.innerHTML = ""; // no duplicates
+        const items = JSON.parse(xhr.response); // parse the item
+            
+        // for (const item of items) {
+            // if (item.id == id) {
+                // console.log("Item:", item);
+                var row = lambda.insertRow();
+                var id = row.insertCell(0);
+                var course = row.insertCell(1);
+                var desc = row.insertCell(2);
+                var duedate = row.insertCell(3); 
+                var progress = row.insertCell(4); 
+                var action = row.insertCell(5); 
+
+                let task = document.createElement("input");
+                task.setAttribute("type", "number");
+                task.setAttribute("id", "taskID_edit");
+                task.setAttribute("value", items.id);
+                id.appendChild(task);
+
+                let c = document.createElement("input");
+                c.setAttribute("type", "text");
+                c.setAttribute("id", "course_edit");
+                c.setAttribute("value", items.course);
+                course.appendChild(c);
+    
+                let des = document.createElement("input");
+                des.setAttribute("type", "text");
+                des.setAttribute("id", "desc_edit");
+                des.setAttribute("value", items.description);
+                desc.appendChild(des);
+
+                // Due Date
+                let due = document.createElement("input");
+                due.setAttribute("type", "date");
+                due.setAttribute("id", "duedate_edit");
+                due.setAttribute("value", items.duedate);
+                duedate.appendChild(due);
+
+                // Progress    
+                let select_prog = document.createElement("select");
+                
+                var notstarted = document.createElement("option"); 
+                notstarted.value = "notstarted"; 
+                notstarted.text = "Not Started"; 
+                select_prog.appendChild(notstarted); 
+
+                var inprog = document.createElement("option"); 
+                inprog.value = "inprog"; 
+                inprog.text = "In Progress"; 
+                select_prog.appendChild(inprog); 
+
+                var complete = document.createElement("option"); 
+                complete.value = "complete"; 
+                complete.text = "Complete"; 
+                select_prog.appendChild(complete); 
+                
+                select_prog.setAttribute("id", "selectProg_edit");
+                progress.appendChild(select_prog);
+
+
+                // id.innerText = items.id;
+
+                
+                // course.innerText = items.course;
+                // desc.innerText = items.description;
+                // duedate.innerText = items.duedate;
+                // progress.innerText = items.progress;
+    
+                let saveButton = document.createElement("button");
+                saveButton.textContent = "save";
+                saveButton.onclick = function () {
+                    saveEditRow();
+                    setTimeout(() => {
+                        window.location.reload();
+                        }, 500);};
+                action.appendChild(saveButton);
+                let delButton = document.createElement("button");
+                delButton.textContent = "Delete";
+                delButton.onclick = function () {
+                    deleteData(items.id);     
+                    setTimeout(() => {
+                    window.location.reload();
+                }, 500);};
+                
+                action.appendChild(delButton);
+            
+            
+        }
+    );
+    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items/" + id);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+}
+
+function saveEditRow() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("PUT", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    var id = document.getElementById("taskID_edit");
+    var course = document.getElementById("course_edit");
+    var description = document.getElementById("desc_edit");
+    var duedate = document.getElementById("duedate_edit");
+    var progress = document.getElementById("selectProg_edit");
+    // console.log("Course Element:", course.value);
+    // console.log("Task Element:", task);
+    // console.log("Due Date Element:", duedate);
+    // console.log("Progress Element:", progress);
+
+    console.log("Task Value:", id ? id.value : null);    
+    console.log("Course Value:", course ? course.value : null);
+    console.log("Description Value:", description ? description.value : null);
+    console.log("Due Date Value:", duedate ? duedate.value : null);
+    console.log("Progress Value:", progress ? progress.value : null);
+    
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { // Request completed
+            if (xhr.status === 200) {
+                alert("Data successfully saved!");
+            } else {
+                alert("Error saving data: " + xhr.statusText);
+            }
+        }
+    };
+    xhr.send(JSON.stringify({
+                "id": id.value,
+                "course": course.value,
+                "description": description.value,
+                "duedate": duedate.value,
+                "progress": progress.value,
+            }));
 }

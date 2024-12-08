@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -49,6 +49,34 @@
     <button class="add-table-button" type="button" onclick="addRow()">+</button>
     </div>
   </div>
+<!-- Button to trigger the modal -->
+<button id="modalButton" style="display: none;"></button>
+
+<!-- Modal structure -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <h2>Edit Task</h2>
+    <!-- <p>If the task doesn't appear, click edit button again.</p> -->
+<button id="closeModal" style="margin-bottom: 20px;">Close</button>
+
+
+    <table id="editTable" summary="A Table that list the course, task, due date, and progress">
+      <thead>
+          <tr class="firstRow">
+            <th scope="col">Task</th>
+            <th scope="col">Course</th>
+            <th scope="col">Description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Progress</th>
+            <th scope="col">Action</th>
+          </tr>
+      </thead>
+      <tbody id="bodyTableEdit">
+      </tbody>
+  </table>    
+  </div>
+
+</div>
 
 </body>
 <script src="/js/main.js"></script>

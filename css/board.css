@@ -7,7 +7,6 @@
     font-family: myFont;
     background: rgba(235,221,209,255);
     margin: 0;
-
   }
   
   h1{
@@ -92,8 +91,7 @@ nav a {
     padding: 20px 50px 20px 50px;
     background: rgba(182, 157, 135, 0.884);
     border: 1px solid #ffffff;  
-    
-  }
+border-collapse: collapse;  }
   
   .about-info {
     text-align: justify;
@@ -151,3 +149,45 @@ input[readonly] {
   padding: 5px;
   
 }
+
+  /* Button styling */
+  #modalButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+  }
+
+  /* Modal content */
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  /* Close button */
+  .modal-content button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+  }
