@@ -41,7 +41,7 @@ function addRow() {
     let task = document.createElement("input");
     task.setAttribute("type", "number");
     task.setAttribute("id", "taskID");
-    task.setAttribute("placeholder", "1, 2, 3...");
+    task.setAttribute("placeholder", "1, 2, 3... < 100");
     t.appendChild(task);
 
     // Course selection
@@ -162,38 +162,41 @@ function loadData(){
         const items = JSON.parse(xhr.response); // parse the item
         
         for (const item of items) {
+            if (Number(item.id) < 100) {
 
-            console.log("Item:", item);
-            var row = lambda.insertRow();
-            var id = row.insertCell(0);
-            var course = row.insertCell(1);
-            var desc = row.insertCell(2);
-            var duedate = row.insertCell(3); 
-            var progress = row.insertCell(4); 
-            var action = row.insertCell(5); 
-
-            id.innerText = item.id;
-            course.innerText = item.course;
-            desc.innerText = item.description;
-            duedate.innerText = item.duedate;
-            progress.innerText = item.progress;
-
-            let editButton = document.createElement("button");
-            editButton.textContent = "Edit";
-            editButton.onclick = function () {
-                editRow(item.id);
                 
+                console.log("Item:", item);
+                var row = lambda.insertRow();
+                var id = row.insertCell(0);
+                var course = row.insertCell(1);
+                var desc = row.insertCell(2);
+                var duedate = row.insertCell(3); 
+                var progress = row.insertCell(4); 
+                var action = row.insertCell(5); 
+
+                id.innerText = item.id;
+                course.innerText = item.course;
+                desc.innerText = item.description;
+                duedate.innerText = item.duedate;
+                progress.innerText = item.progress;
+
+                let editButton = document.createElement("button");
+                editButton.textContent = "Edit";
+                editButton.onclick = function () {
+                    editRow(item.id);
+                    
+                }
+                action.appendChild(editButton);
+                let delButton = document.createElement("button");
+                delButton.textContent = "Delete";
+                delButton.onclick = function () {
+                    deleteData(item.id);     
+                    setTimeout(() => {
+                    window.location.reload();
+                }, 500);};
+                
+                action.appendChild(delButton);
             }
-            action.appendChild(editButton);
-            let delButton = document.createElement("button");
-            delButton.textContent = "Delete";
-            delButton.onclick = function () {
-                deleteData(item.id);     
-                setTimeout(() => {
-                window.location.reload();
-              }, 500);};
-            
-            action.appendChild(delButton);
         }
     });
 
@@ -389,11 +392,12 @@ function populateSelect() {
         const items = JSON.parse(xhr.response); // parse the item
         
         for (const item of items) {
-
-            const option = document.createElement("option");
-            option.value = item.id;
-            option.textContent = item.id;
-            select.appendChild(option);
+            if (Number(item.id) < 100) {
+                const option = document.createElement("option");
+                option.value = item.id;
+                option.textContent = item.id;
+                select.appendChild(option);
+            }
         }
     });
     xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items", true);

@@ -29,20 +29,28 @@
     <div class="about">
       <h2>My goals</h2>
       <form>
-        <label for="taskTitle">Goal name:</label><br><br>
-        <input type="text" id="goalTitle" placeholder="Finish assignments week 1 (e.g)" required/><br><br>
+        <label for="goalid">Goal Number:</label><br><br>
+        <input type="number" id="goalid" placeholder="1, 2, 3..." required/><br><br>
     
-        <label for="taskDetails">Goal Description:</label><br><br>
-        <textarea id="taskDetails" placeholder="Finish all my assignments before the weekend! (e.g)"></textarea><br><br>
+        <label for="goalName">Goal title:</label><br><br>
+        <input type="text" id="goalName" placeholder="Finish assignments week 1 (e.g)" required/><br><br>
+    
+        <!-- <label for="taskDetails">Goal Description:</label><br><br> -->
+        <textarea id="goalDesc" placeholder="Finish all my assignments before the weekend! (e.g)"></textarea><br><br>
 
         <button type="button" id="send-data" onclick="sendData()">Add Goal</button>
 
       </form>
         <div>
-
         </div>
+      <div id="goalsContainer">
+        <!-- <h3>Goal</h3>
+        <p>Text</p>
+        <button type="button" id="send-data" onclick="">Complete</button> -->
+      </div>
+
       </div>
     </div>
 </body>
-<script src="/js/main.js"></script>
+<script src="/js/goals.js"></script>
 </html>

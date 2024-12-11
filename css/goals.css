@@ -102,16 +102,27 @@ text-align: justify;
 }
 
 form {
-    text-align: center;
+  text-align: center;
 }
 
-#goalTitle {
-    min-width: 250px;
+#goalName {
+  min-width: 400px;
+  min-height: 30px;
+  padding: 0px 10px 0px 10px;
 }
 
 form textarea {
-    min-height: 100px;
-  }
+  min-height: 100px;
+  min-width: 500px;
+}
 
+#goalsContainer {
+  display: flex;
+  margin: 50px 10px 0px 10px;
+  justify-content: center;
+}
 
-  
+#goalsContainer div {
+  margin: 0px 10px 0px 10px;
+
+}
