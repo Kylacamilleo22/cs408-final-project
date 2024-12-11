@@ -1,13 +1,20 @@
-window.onload = loadData();
-
+// window.onload = loadData();
+// window.onload = populateSelect();
+window.onload = loaded;
 /**
  * Simple Function that will be run when the browser is finished loading.
  */
-// function loaded() {
-//     // Assign to a variable so we can set a breakpoint in the debugger!
-//     const hello = sayHello();
-//     console.log(hello);
-// }
+function loaded() {
+    loadData();
+    populateSelect();
+
+    // Assign to a variable so we can set a breakpoint in the debugger!
+    document.getElementById("editTaskButton")?.addEventListener("click", (event) => {
+        event.preventDefault();
+        editTaskButton();
+    });
+
+}
 
 let taskNum = 0;
 
@@ -34,14 +41,14 @@ function addRow() {
     let task = document.createElement("input");
     task.setAttribute("type", "number");
     task.setAttribute("id", "taskID");
-    task.setAttribute("placeholder", "1");
+    task.setAttribute("placeholder", "1, 2, 3...");
     t.appendChild(task);
 
     // Course selection
     let course = document.createElement("input");
     course.setAttribute("type", "text");
     course.setAttribute("id", "course");
-    course.setAttribute("placeholder", "e.g. CS 408");
+    course.setAttribute("placeholder", "CS 408 e.g.");
     c.appendChild(course);
 
     // Due Date
@@ -75,7 +82,7 @@ function addRow() {
     let description = document.createElement("input");
     description.setAttribute("type", "text");
     description.setAttribute("id", "desc");
-    description.setAttribute("placeholder", "e.g. HW 1");
+    description.setAttribute("placeholder", "HW 1, Quiz 1, e.g.");
     desc.appendChild(description);
 
     // Action
@@ -175,6 +182,7 @@ function loadData(){
             editButton.textContent = "Edit";
             editButton.onclick = function () {
                 editRow(item.id);
+                
             }
             action.appendChild(editButton);
             let delButton = document.createElement("button");
@@ -207,6 +215,7 @@ function deleteData(id) {
 function editRow(id) {
     insertSelectedRow(id);
     modalOverlay.style.display = "block"; // Show the modal
+    // can also do it in edit page
 
 }
 
@@ -365,4 +374,151 @@ function saveEditRow() {
                 "duedate": duedate.value,
                 "progress": progress.value,
             }));
+}
+
+
+
+function populateSelect() {
+    const select = document.getElementById("selectTask"); // selectTask
+    let xhr = new XMLHttpRequest();
+
+    // let lambda = document.getElementById("selectTask");
+    select.innerHTML = ""; 
+    xhr.addEventListener("load", function () {
+        const items = JSON.parse(xhr.response); // parse the item
+        
+        for (const item of items) {
+
+            const option = document.createElement("option");
+            option.value = item.id;
+            option.textContent = item.id;
+            select.appendChild(option);
+        }
+    });
+    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items", true);
+    xhr.send();
+}
+
+
+function insertSelectedRowForEdit(id) {
+    let lambda = document.getElementById("bodyTableEdit");
+    let xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("load", function () {
+        // lambda.innerHTML = xhr.response;
+        lambda.innerHTML = ""; // no duplicates
+        const items = JSON.parse(xhr.response); // parse the item
+            
+        // for (const item of items) {
+            // if (item.id == id) {
+                // console.log("Item:", item);
+                var row = lambda.insertRow();
+                var id = row.insertCell(0);
+                var course = row.insertCell(1);
+                var desc = row.insertCell(2);
+                var duedate = row.insertCell(3); 
+                var progress = row.insertCell(4); 
+                var action = row.insertCell(5); 
+
+                let task = document.createElement("input");
+                task.setAttribute("type", "number");
+                task.setAttribute("id", "taskID_edit");
+                task.setAttribute("value", items.id);
+                id.appendChild(task);
+
+                let c = document.createElement("input");
+                c.setAttribute("type", "text");
+                c.setAttribute("id", "course_edit");
+                c.setAttribute("value", items.course);
+                course.appendChild(c);
+    
+                let des = document.createElement("input");
+                des.setAttribute("type", "text");
+                des.setAttribute("id", "desc_edit");
+                des.setAttribute("value", items.description);
+                desc.appendChild(des);
+
+                // Due Date
+                let due = document.createElement("input");
+                due.setAttribute("type", "date");
+                due.setAttribute("id", "duedate_edit");
+                due.setAttribute("value", items.duedate);
+                duedate.appendChild(due);
+
+                // Progress    
+                let select_prog = document.createElement("select");
+                
+                var notstarted = document.createElement("option"); 
+                notstarted.value = "notstarted"; 
+                notstarted.text = "Not Started"; 
+                select_prog.appendChild(notstarted); 
+
+                var inprog = document.createElement("option"); 
+                inprog.value = "inprog"; 
+                inprog.text = "In Progress"; 
+                select_prog.appendChild(inprog); 
+
+                var complete = document.createElement("option"); 
+                complete.value = "complete"; 
+                complete.text = "Complete"; 
+                select_prog.appendChild(complete); 
+                
+                select_prog.setAttribute("id", "selectProg_edit");
+                progress.appendChild(select_prog);
+
+
+                // id.innerText = items.id;
+
+                
+                // course.innerText = items.course;
+                // desc.innerText = items.description;
+                // duedate.innerText = items.duedate;
+                // progress.innerText = items.progress;
+    
+                let saveButton = document.createElement("button");
+                saveButton.textContent = "save";
+                saveButton.onclick = function () {
+                    saveEditRow();
+                    setTimeout(() => {
+                        location.replace("/html/board.html");
+                        }, 500);};
+                action.appendChild(saveButton);
+                let delButton = document.createElement("button");
+                delButton.textContent = "Delete";
+                delButton.onclick = function () {
+                    deleteData(items.id);     
+                    setTimeout(() => {
+                        location.replace("/html/board.html");
+                        }, 500);};
+                action.appendChild(delButton);
+        }
+    );
+    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items/" + id);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+}
+
+
+function editTaskButton() {
+    const selectedTask = document.getElementById("selectTask");
+    const selectedTaskValue = selectedTask.value;
+
+    console.log("Task Value:", selectedTaskValue);    
+
+    let xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", function () {
+        const items = JSON.parse(xhr.response); // parse the item
+        
+        for (const item of items) {
+
+            if (item.id == selectedTaskValue) {
+                console.log("item Task Value:", item.id);    
+                insertSelectedRowForEdit(item.id);
+             
+            }
+        }
+    });
+    xhr.open("GET", "https://m14zlk7u19.execute-api.us-east-2.amazonaws.com/items", true);
+    xhr.send();
+        
 }

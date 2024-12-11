@@ -12,7 +12,7 @@
 <body>
   <header class="header">
   <!-- <img src="/img/header_pic_2.png" class="thumbnail"> -->
-    <h1>Board</h1>
+    <h1>Edit</h1>
   </header>
 
   <nav>
@@ -21,18 +21,28 @@
       <li><a href="/html/board.html">Board</a></li>
       <li><a href="/html/editboard.html">Edit</a></li>
       <li><a href="/html/goals.html">Goals</a></li>
-
     </ul>
   </nav>
 
   <div class="main">
     <div class="about">
-      <button class="load-data" id="load-data" type="button" onclick="loadData()">Load Data</button>
-      <!-- <button class="add-table-button" type="button">Add Table</button> -->
       
-      <h2>My Todo's</h2>
+      <h2>Edit a Task</h2>
+      <!-- drop down menu to select task to edit -->
+        <form class="editTask">
+            <label for="selectTask"></label>
+            <select name="selectTask" id="selectTask">
+            </select>
+
+            <button id="editTaskButton" onclick="editTaskButton()">Edit</button> <!-- Used to ensure that User.removeClass() works properly doesn't necessarily have remain in this place-->
+            <br><br>
+        </form>
+
       <div class="table">
-      <table id="myTable" summary="A Table that list the course, task, due date, and progress">
+        <button id="modalButton" style="display: none;"></button>
+
+
+        <table id="editTable" summary="A Table that list the course, task, due date, and progress">
           <thead>
               <tr class="firstRow">
                 <th scope="col">Task</th>
@@ -43,13 +53,19 @@
                 <th scope="col">Action</th>
               </tr>
           </thead>
-          <tbody id="bodyTable">
+          <tbody id="bodyTableEdit">
           </tbody>
       </table>    
+      </div>
+      </div>
     </div>
-    <button class="add-table-button" type="button" onclick="addRow()">+</button>
     </div>
-  </div>
+
+
+
+</div>
+
+  
 <!-- Button to trigger the modal -->
 <button id="modalButton" style="display: none;"></button>
 
@@ -81,4 +97,8 @@
 
 </body>
 <script src="/js/main.js"></script>
+
+<script>
+    
+</script>
 </html>
