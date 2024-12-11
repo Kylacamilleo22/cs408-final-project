@@ -256,11 +256,12 @@ function insertSelectedRow(id) {
                 var progress = row.insertCell(4); 
                 var action = row.insertCell(5); 
 
-                let task = document.createElement("input");
-                task.setAttribute("type", "number");
-                task.setAttribute("id", "taskID_edit");
-                task.setAttribute("value", items.id);
-                id.appendChild(task);
+                // let task = document.createElement("input");
+                // task.setAttribute("type", "number");
+                // task.setAttribute("id", "taskID_edit");
+                // task.setAttribute("value", items.id);
+                // id.appendChild(task);
+                id.innerText = items.id;
 
                 let c = document.createElement("input");
                 c.setAttribute("type", "text");
@@ -420,11 +421,8 @@ function insertSelectedRowForEdit(id) {
                 var progress = row.insertCell(4); 
                 var action = row.insertCell(5); 
 
-                let task = document.createElement("input");
-                task.setAttribute("type", "number");
-                task.setAttribute("id", "taskID_edit");
-                task.setAttribute("value", items.id);
-                id.appendChild(task);
+                id.innerText = items.id;
+                // id.appendChild(task);
 
                 let c = document.createElement("input");
                 c.setAttribute("type", "text");
