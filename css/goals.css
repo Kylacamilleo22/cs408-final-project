@@ -21,6 +21,7 @@
 
   h2 {
     text-align: center;
+
   }
   
   .header { 
@@ -117,12 +118,29 @@ form textarea {
 }
 
 #goalsContainer {
-  display: flex;
+  display: flex-box;
   margin: 50px 10px 0px 10px;
   justify-content: center;
-}
+  overflow: scroll;
+  border-collapse: collapse;}
 
 #goalsContainer div {
-  margin: 0px 10px 0px 10px;
+  margin: 0px 10px 10px 10px;
+  /* width: 100px; */
+  background: rgba(82, 51, 8, 0.564);
+  border: 2px solid #ffffff;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 20px;
+  padding-right: 100px;
+}
 
+h3 {
+  /* background: rgba(82, 51, 8, 0.564);
+  border: 2px solid #ffffff; */
+  padding: 5px 5px 5px 5px ;
+}
+
+#goalsContainer p {
+  padding-left: 50px;
 }

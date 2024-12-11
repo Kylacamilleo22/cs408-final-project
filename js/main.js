@@ -131,16 +131,17 @@ function sendData() {
     console.log("Description Value:", description ? description.value : null);
     console.log("Due Date Value:", duedate ? duedate.value : null);
     console.log("Progress Value:", progress ? progress.value : null);
-    
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) { // Request completed
-            if (xhr.status === 200) {
-                alert("Data successfully saved!");
-            } else {
-                alert("Error saving data: " + xhr.statusText);
-            }
-        }
-    };
+
+    // For testing purposes
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState === 4) { // Request completed
+    //         if (xhr.status === 200) {
+    //             alert("Data successfully saved!");
+    //         } else {
+    //             alert("Error saving data: " + xhr.statusText);
+    //         }
+    //     }
+    // };
     xhr.send(JSON.stringify({
                 // "id": String(taskNum),
                 "id": id.value,
@@ -259,12 +260,12 @@ function insertSelectedRow(id) {
                 var progress = row.insertCell(4); 
                 var action = row.insertCell(5); 
 
-                // let task = document.createElement("input");
-                // task.setAttribute("type", "number");
-                // task.setAttribute("id", "taskID_edit");
-                // task.setAttribute("value", items.id);
-                // id.appendChild(task);
-                id.innerText = items.id;
+                let task = document.createElement("input");
+                task.setAttribute("type", "number");
+                task.setAttribute("id", "taskID_edit");
+                task.setAttribute("value", items.id);
+                id.appendChild(task);
+                // id.innerText = items.id;
 
                 let c = document.createElement("input");
                 c.setAttribute("type", "text");
@@ -362,15 +363,16 @@ function saveEditRow() {
     console.log("Due Date Value:", duedate ? duedate.value : null);
     console.log("Progress Value:", progress ? progress.value : null);
     
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) { // Request completed
-            if (xhr.status === 200) {
-                alert("Data successfully saved!");
-            } else {
-                alert("Error saving data: " + xhr.statusText);
-            }
-        }
-    };
+    // For testing purposes
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState === 4) { // Request completed
+    //         if (xhr.status === 200) {
+    //             alert("Data successfully saved!");
+    //         } else {
+    //             alert("Error saving data: " + xhr.statusText);
+    //         }
+    //     }
+    // };
     xhr.send(JSON.stringify({
                 "id": id.value,
                 "course": course.value,
@@ -425,8 +427,15 @@ function insertSelectedRowForEdit(id) {
                 var progress = row.insertCell(4); 
                 var action = row.insertCell(5); 
 
-                id.innerText = items.id;
+                // let task = items.id;
+                // // id.innerText = items.id;
                 // id.appendChild(task);
+
+                let task = document.createElement("input");
+                task.setAttribute("type", "number");
+                task.setAttribute("id", "taskID_edit");
+                task.setAttribute("value", items.id);
+                id.appendChild(task);
 
                 let c = document.createElement("input");
                 c.setAttribute("type", "text");

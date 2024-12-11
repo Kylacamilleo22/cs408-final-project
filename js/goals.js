@@ -1,6 +1,6 @@
 window.onload = displayGoals();
 // having the same id overlaps with task, so I just add 100 to id to differentiate. 
-let goalID = 100;
+let goalID = 102;
 
 function sendData() {
     let xhr = new XMLHttpRequest();
@@ -19,19 +19,21 @@ function sendData() {
     console.log("Goal Desc:", goalDesc ? goalDesc.value : null);    
     console.log("Goal idvalid:", idToNum ? idToNum.value : null);    
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) { // Request completed
-            if (xhr.status === 200) {
-                alert("Data successfully saved!");
-            } else {
-                alert("Error saving data: " + xhr.statusText);
-            }
-        }
-    };
+    // For testing purposes
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState === 4) { // Request completed
+    //         if (xhr.status === 200) {
+    //             alert("Data successfully saved!");
+    //         } else {
+    //             alert("Error saving data: " + xhr.statusText);
+    //         }
+    //     }
+    // };
     xhr.send(JSON.stringify({
                 "id": idToNum.toString(),
                 // "id": goalID.toString(),
-                "goal": goalName.value,
+                "goalid": goalid.value,
+                "goalname": goalName.value,
                 "goaldesc": goalDesc.value,
             }));
             goalID++;
@@ -53,10 +55,11 @@ function displayGoals() {
         for (const item of items) {
             if (Number(item.id) > 100) {
                 let goalBox = document.createElement("div");
-                let goalID = document.createElement("p")
-                goalID.textContent = item.id;
-                let goalTitle = document.createElement("p");
+
+                let goalTitle = document.createElement("h3");
                 goalTitle.textContent =  item.goalname;
+                // let goalID = document.createElement("p")
+                // goalID.textContent = "Goal id: " + item.goalid;
                 let goalDesc = document.createElement("p");
                 goalDesc.textContent = item.goaldesc;
                 
@@ -68,8 +71,8 @@ function displayGoals() {
                     window.location.reload();
                 }, 500);};
 
-                goalBox.appendChild(goalID);
                 goalBox.appendChild(goalTitle);
+                // goalBox.appendChild(goalID);
                 goalBox.appendChild(goalDesc);
                 goalBox.appendChild(delButton);
                 goalsContainer.appendChild(goalBox);
